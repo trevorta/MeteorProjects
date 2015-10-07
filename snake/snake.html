@@ -1,0 +1,74 @@
+<head>
+    <title>snake</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <script type="text/javascript">
+   		window.addEventListener('keydown', moveSnake, false);
+		window.setInterval(moveNatural, 100);
+    </script>
+</head>
+
+<body>
+    {{> headerTemplate}}
+    <div class="mainBody">
+        {{> gameTemplate}}
+        <div class="infoFrame">
+            {{> scoreTemplate}}
+            {{> targetTemplate}}
+        </div>
+        <div class="leaderBoard">
+            {{> leaderTemplate}}
+        </div>
+    </div>
+</body>
+
+<template name="leaderTemplate">
+    <div class="leaderClass">
+        High Scores:
+        <ol>
+            {{#each scores}}
+            {{> score}}
+            {{/each}}
+        </ol>
+    </div>
+</template>
+
+<template name="score">
+    <li type="1" class="highscore">
+        <strong>{{username}}</strong>: {{score}}
+    </li>
+</template>
+
+<template name="headerTemplate">
+    <div class="headerClass">
+        <div class="welcome"> Snake Classic</div>
+        <div id="login">{{> loginButtons}}</div>
+    </div>
+</template>
+
+<template name="gameTemplate">
+    <div class="gameClass">
+    	<div id="theMap"></div>
+    </div>
+</template>
+
+<template name="scoreTemplate">
+    <div class="scoreTemplate">
+        {{#if currentUser}}
+        <div class="playBtn myBtn" onclick="renderGameBoard()">Play</div>
+        <div class="scoreBoard">High Score: <span class="highScore"></span></div>
+        <div class="scoreBoard">Score: <span class="score"></span></div>
+        <div class="rule">
+        	<h3>Rules:</h3>
+        	<p>1. Eat food to grow (yellow dot)</p>
+			<p>2. Stay away from the eagle (brown dot)</p>
+        </div>
+        {{/if}}
+    </div>
+</template>
+
+<template name="targetTemplate">
+    <div class="targetTemplate">
+        <img class="target">
+    </div>
+
+</template>
